@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+//'use strict';
 var myApp = angular.module('helloUIRouter', ['ui.router']);
 myApp.config(['$stateProvider', function($stateProvider){
 	var helloState = {
@@ -20,4 +20,24 @@ myApp.config(['$stateProvider', function($stateProvider){
 	
 	$stateProvider.state(helloState);
 	$stateProvider.state(aboutState);
+	
+	
+	//
+	$stateProvider.state('contacts', {
+		abstract: true,
+		url: '/contacts',
+		templateUrl: '../views/contacts.html',
+		controller: function($scope){
+			$scope.contacts = [{id: 0, name: 'Alice'}, {id: 1, name: 'Bob'}];
+		}
+	}).state('contacts.list', {
+		url: '/list',
+		templateUrl: '../views/contacts.list.html',
+	}).state('contacts.detail', {
+		url: '/:id',
+		templateUrl: '../views/contacts.detail.html',
+		controller: function($scope, $stateParams){
+			$scope.person = $scope.contacts[$stateParams.id];
+		}
+	})
 }]);

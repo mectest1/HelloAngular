@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+ref: https://ui-router.github.io/tutorial/ng1/helloworld
+-->
+<html>
+    <head>
+        <title>UI-Router Example</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../bower_components/angular/angular.js"></script>
+        <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="../js/ui-router-example-app.js"></script>
+    </head>
+    <body>
+        <ul>
+            <li><a href="../index.html">Back to the index page</a></li>
+        </ul>
+        <hr/>
+        <div  ng-app="helloUIRouter">
+            <a ui-sref="hello" ui-sref-active="active">Hello</a>
+            <a ui-sref="about" ui-sref-active="active">About</a>   
+            
+            <ui-view></ui-view>
+        </div>
+    </body>
+</html>

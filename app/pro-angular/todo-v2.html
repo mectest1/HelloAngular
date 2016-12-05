@@ -50,12 +50,14 @@ and open the template in the editor.
 				<thead>
 					<tr>
 						<th>Description</th>
+						<th></th>
 						<th>Done</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="item in todo.items">
 						<td>{{item.action}}</td>
+						<td><input type="checkbox" ng-model="item.done"/></td>
 						<td>{{item.done}}</td>
 					</tr>
 				</tbody>

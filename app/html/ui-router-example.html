@@ -20,7 +20,8 @@ ref: https://ui-router.github.io/tutorial/ng1/helloworld
             <a ui-sref="hello" ui-sref-active="active">Hello</a>
             <a ui-sref="about" ui-sref-active="active">About</a>   
             
-			<a ui-sref="contacts.list" ui-sref-active="active">Contacts</a>
+			<a ui-sref="contacts.list" ui-sref-active="active">Contacts (through ui-sref)</a>
+			<a href="#/contacts/list">Contacts(through href)</a>
             <ui-view></ui-view>
         </div>
     </body>

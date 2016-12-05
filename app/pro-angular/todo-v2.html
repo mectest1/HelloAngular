@@ -13,10 +13,26 @@ and open the template in the editor.
 		<link href="../bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet"/>
 		<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
 		<script type="text/javascript">
-			var todoApp = angular.module('todoApp', []);
+			(function(){
+				var model = {
+					user: 'Adam',
+					items: [{action: 'Buy Flowers', done: false},
+							{action: 'Get Shoes', done: false},
+							{action: 'Collect Tickets', done: true},
+							{action: 'Call Joe', done: false}]
+					
+				};
+				
+				var todoApp = angular.module('todoApp', []);
+				todoApp.controller('ToDoCtrl', ['$scope', function($scope){
+					$scope.todo = model;	
+						
+				}]);
+			})();
+			
 		</script>
 	</head>
-	<body>
+	<body ng-controller="ToDoCtrl">
 		<div class="page-header">
 			<h1>Hello Angular: To Do List</h1>
 		</div>
@@ -35,10 +51,7 @@ and open the template in the editor.
 					</tr>
 				</thead>
 				<tbody>
-					<tr><td>Buy Flowers</td><td>No</td></tr>
-					<tr><td>Get Shoes</td><td>No</td></tr>
-					<tr><td>Collect Tickets</td><td>Yes</td></tr>
-					<tr><td>Call Joe</td><td>No</td></tr>
+					
 				</tbody>
 			</table>
 		</div>

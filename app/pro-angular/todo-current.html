@@ -49,6 +49,20 @@ and open the template in the editor.
 						console.log('Are they the same object? ' + (actionText === $scope.actionText));
 					}
 				}]);
+			
+				todoApp.filter('checkedItems', function(){
+					return function(items, showComplete){
+						var resultArr = [];
+						angular.forEach(items, function(item){
+							if(!item.done 
+								|| showComplete
+							){
+								resultArr.push(item);
+							}
+						});
+						return resultArr;
+					}
+				});
 			})();
 			
 		</script>
@@ -77,11 +91,17 @@ and open the template in the editor.
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="item in todo.items">
+					<!--<tr ng-repeat="item in todo.items">-->
+					<!--<tr ng-repeat="item in todo.items | filter: {done: false} | orderBy: 'action'">-->
+					<tr ng-repeat="item in todo.items | checkedItems: showComplete | orderBy: 'action'">
 						<td>{{item.action}}</td>
 						<td><input type="checkbox" ng-model="item.done"/></td>					</tr>
 				</tbody>
 			</table>
+			
+			<div class="checkbox-inline">
+				<label><input type="checkbox" ng_model="showComplete"/> Show Complete </label>
+			</div>
 		</div>
 	</body>
 </html>

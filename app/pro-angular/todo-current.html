@@ -36,6 +36,11 @@ and open the template in the editor.
 						});
 						return count;
 					};
+					
+					
+					$scope.warningLevel = function(){
+						return $scope.incompleteCount() < 3 ? 'label-success' : 'label-warning';
+					};
 						
 				}]);
 			})();
@@ -46,7 +51,9 @@ and open the template in the editor.
 		<div class="page-header">
 			<h1>
 				{{todo.user}}'s To Do List
-				<span class="label label-default" ng-hide="0 == incompleteCount()">{{incompleteCount()}}</span>
+				<span class="label label-default" ng-hide="0 == incompleteCount()"
+					  ng-class="warningLevel()"
+					  >{{incompleteCount()}}</span>
 			</h1>
 		</div>
 		<div class="panel">

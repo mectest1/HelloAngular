@@ -26,6 +26,16 @@ and open the template in the editor.
 				var todoApp = angular.module('todoApp', []);
 				todoApp.controller('ToDoCtrl', ['$scope', function($scope){
 					$scope.todo = model;	
+					
+					$scope.incompleteCount = function(){
+						var count = 0;
+						angular.forEach($scope.todo.items, function(item){
+							if(!item.done){
+								++count;
+							}
+						});
+						return count;
+					};
 						
 				}]);
 			})();
@@ -36,7 +46,7 @@ and open the template in the editor.
 		<div class="page-header">
 			<h1>
 				{{todo.user}}'s To Do List
-				<span class="label label-default">{{todo.items.length}}</span>
+				<span class="label label-default" ng-hide="0 == incompleteCount()">{{incompleteCount()}}</span>
 			</h1>
 		</div>
 		<div class="panel">
@@ -50,16 +60,13 @@ and open the template in the editor.
 				<thead>
 					<tr>
 						<th>Description</th>
-						<th></th>
 						<th>Done</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr ng-repeat="item in todo.items">
 						<td>{{item.action}}</td>
-						<td><input type="checkbox" ng-model="item.done"/></td>
-						<td>{{item.done}}</td>
-					</tr>
+						<td><input type="checkbox" ng-model="item.done"/></td>					</tr>
 				</tbody>
 			</table>
 		</div>

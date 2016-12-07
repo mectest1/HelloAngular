@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html ng-app="sportsStore">
 	<head>
 		<title>Pro Angular Examples List</title>
 		<meta charset="UTF-8">
@@ -14,8 +14,19 @@ and open the template in the editor.
 		<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
 		<script type="text/javascript" src="../bower_components/angular-route/angular-route.js"></script>
 		<script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+		<script type="text/javascript" src="./app.js"></script>
 	</head>
 	<body>
-		<div class="panel panel-heading">Pro Angular Examples List</div>
+		<div class="navbar navbar-inverse">
+			<a class="navbar-brand" href="#">SPORTS STORE</a>
+		</div>
+		<div class="panel panel-default row">
+			<div class="col-xs-3">
+				Categories go here
+			</div>
+			<div class="col-xs-8">
+				Products go here
+			</div>
+		</div>
 	</body>
 </html>

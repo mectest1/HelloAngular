@@ -30,6 +30,10 @@ and open the template in the editor.
 					});
 				}]);
 				todoApp.controller('ToDoCtrl', ['$scope', function($scope){
+						
+					var self = this;
+					
+					
 					$scope.todo = model;	
 					
 					$scope.incompleteCount = function(){

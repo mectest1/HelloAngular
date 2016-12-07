@@ -16,7 +16,7 @@ and open the template in the editor.
 		<script type="text/javascript" src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 	</head>
-	<body>
+	<body ng-controller="sportsStoreCtrl as ctrl">
 		<div class="navbar navbar-inverse">
 			<a class="navbar-brand" href="#">SPORTS STORE</a>
 		</div>
@@ -25,7 +25,15 @@ and open the template in the editor.
 				Categories go here
 			</div>
 			<div class="col-xs-8">
-				Products go here
+				<div class="well" ng-repeat="item in data.products">
+					<h3>
+						<strong>{{item.name}}</strong>
+						<span class="pull-right label label-primary">
+							{{item.price | currency}}
+						</span>
+					</h3>
+					<span class="lead">{{item.description</span>
+				</div>
 			</div>
 		</div>
 	</body>

@@ -11,10 +11,28 @@
 					]
 				};
 				
-				$scope.selectCategory = function(){
-					
+				//$scope.data = data;
+				
+				$scope.selectCategory = function(categoryName){
+//					if(categoryName){
+//						$scope.data.products = [];
+//						angular.forEach($scope.data.products, function(product){
+//							if(angular.equals(categoryName, product.category)){
+//								$scope.data.products.push(product);
+//							}
+//						});
+//					}else{
+//						//
+//					}
+//					if(categoryName){
+//						$scope.currentCategory = categoryName;
+//					}else{
+//						$scope.currentCategory = null;
+//					}
+					$scope.currentCategory = categoryName || '';
 				};
 				
+				$scope.currentCategory = '';
 				
 	}]);
 })();

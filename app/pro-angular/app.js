@@ -1,6 +1,6 @@
 
 (function(){
-	angular.module('sportsStore', ['customFilters'])
+	angular.module('sportsStore', ['customFilters', 'cart'])
 			.constant('sportsStoreConfig', {
 //				dataUrl: 'http://localhost:5500/productsderp'
 				dataUrl: 'http://localhost:5500/products'

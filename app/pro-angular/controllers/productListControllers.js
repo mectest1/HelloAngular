@@ -1,5 +1,8 @@
 
-angular.module('sportsStore')
+
+(function(){
+	
+	angular.module('sportsStore')
 //		.constant('productListActiveClass', 'btn-primary')
 //		.constant('productListPageCount', 3)
 		.constant('productListConfig', {
@@ -74,3 +77,4 @@ angular.module('sportsStore')
 				return retval;
 			};
 		});
+})();

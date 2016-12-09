@@ -17,10 +17,12 @@ and open the template in the editor.
 		<script type="text/javascript" src="./app.js"></script>
 		<script type="text/javascript" src="./filters/customFilters.js"></script>
 		<script type="text/javascript" src="./controllers/productListControllers.js"></script>
+		<script type="text/javascript" src="./components/cart/cart.js"></script>
 	</head>
 	<body ng-controller="sportsStoreCtrl as ctrl">
 		<div class="navbar navbar-inverse">
 			<a class="navbar-brand" href="#">SPORTS STORE</a>
+			<div data-cart-summary>Cart Summary</div>
 		</div>
 		<div class="alert alert-danger" ng-show="data.error">
 			Error ({{data.error.status}}). the product data was not loaded.

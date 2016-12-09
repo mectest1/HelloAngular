@@ -26,7 +26,7 @@ and open the template in the editor.
 			Error ({{data.error.status}}). the product data was not loaded.
 			<a href="#" class="alert-link">Click here to try again</a>
 		</div>
-<!--		<div ng-controller="productListCtrl as pctrl" class="panel panel-default row"
+		<div ng-controller="productListCtrl as pctrl" class="panel panel-default row"
 			 ng-hide="data.error">
 			<div class="col-xs-3">
 				<a ng-click="selectCategory()" class="btn btn-block btn-default btn-lg">Home</a>
@@ -38,9 +38,9 @@ and open the template in the editor.
 				</a>
 			</div>
 			<div class="col-xs-8">
-				<div class="well" ng-repeat="item in data.products">
-				<div class="well" ng-repeat="item in data.products | filter: {category: currentCategory}">
-				<div class="well" ng-repeat="item in data.products | filter: categoryFilterFn">
+				<!--<div class="well" ng-repeat="item in data.products">-->
+				<!--<div class="well" ng-repeat="item in data.products | filter: {category: currentCategory}">-->
+				<!--<div class="well" ng-repeat="item in data.products | filter: categoryFilterFn">-->
 				<div class="well" ng-repeat="item in data.products | filter: categoryFilterFn | range: selectedPage : pageSize">
 					<h3>
 						<strong>{{item.name}}</strong>
@@ -58,8 +58,6 @@ and open the template in the editor.
 					</a>
 				</div>
 			</div>
-		</div>-->
-		<!--	<ng-include src="'views/productList.html'"></ng-include>-->
-		<div ng-include="'views/productList.html'">The product list goes in here.</div>
+		</div>
 	</body>
 </html>

@@ -2,6 +2,7 @@
 (function(){
 	angular.module('sportsStore', ['customFilters'])
 			.constant('sportsStoreConfig', {
+//				dataUrl: 'http://localhost:5500/productsderp'
 				dataUrl: 'http://localhost:5500/products'
 			}).controller('sportsStoreCtrl',  ['$scope', 'sportsStoreConfig', '$http',
 				function($scope, config, $http){

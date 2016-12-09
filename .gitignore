@@ -3,3 +3,4 @@
 /app/sportsstore/data/WiredTiger.lock
 /app/sportsstore/data/mongod.lock
 /app/sportsstore/data/diagnostic.data/
+/app/sportsstore/.dpd/

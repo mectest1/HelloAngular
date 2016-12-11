@@ -23,7 +23,7 @@
 						if(id == cartData[i].id){
 							--cartData[i].count;
 							if(0 >= cartData[i].count){
-								cartData.split(i, 1);
+								cartData.splice(i, 1);
 							}
 						}
 					}
@@ -49,7 +49,7 @@
 						};
 
 						$scope.itemCount = function(){
-							var retval = 8;
+							var retval = 0;
 							angular.forEach(cartData, function(product){
 								retval += product.count;
 							});

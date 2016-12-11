@@ -2,7 +2,7 @@
 	angular.module('sportsStore')
 			.controller('cartSummaryController', ['$scope', 'cart', 
 				function($scope, cart){
-					$scope.cartData = cartDtaa.getProducts();
+					$scope.cartData = cart.getProducts();
 					
 					$scope.totle = function(){
 						var total = 0;

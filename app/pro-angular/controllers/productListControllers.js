@@ -10,8 +10,8 @@
 			productListPageCount: 3
 //		}).controller('productListCtrl', ['$scope', '$filter', 'productListActiveClass', 'productListPageCount', 
 //					function($scope, $filter, productListActiveClass, productListPageCount){
-		}).controller('productListCtrl', ['$scope', '$filter', 'productListConfig', 
-					function($scope, $filter, config){
+		}).controller('productListCtrl', ['$scope', '$filter', 'productListConfig', 'cart',
+					function($scope, $filter, config, cart){
 			var selectedCategory = null;
 			
 			$scope.selectedPage = 1;
@@ -45,6 +45,11 @@
 				}
 				return retval;
 			};
+			
+			$scope.addProductToCart = function(product){
+				cart.addProduct(product.id, product.name, product.price);
+			};
+			
 		}]).filter('range', ['$filter', function($filter){
 			var limitTo = $filter('limitTo');
 			return function (data, page, size){

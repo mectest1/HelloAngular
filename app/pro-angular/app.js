@@ -1,10 +1,22 @@
 
 (function(){
-	angular.module('sportsStore', ['customFilters', 'cart'])
+	angular.module('sportsStore', ['customFilters', 'cart', 'ngRoute'])
 			.constant('sportsStoreConfig', {
 //				dataUrl: 'http://localhost:5500/productsderp'
 				dataUrl: 'http://localhost:5500/products'
-			}).controller('sportsStoreCtrl',  ['$scope', 'sportsStoreConfig', '$http',
+			}).config(['$routeProvider', function($routeProvider){
+					$routeProvider.when('/checkout', {
+						templateUrl: './views/checkoutSummary.html'
+					});
+					
+					$routeProvider.when('/products', {
+						templateUrl: './views/productList.html'
+					});
+					
+					$routeProvider.otherwise({
+						templateUrl: './views/productList.html'
+					});
+			}]).controller('sportsStoreCtrl',  ['$scope', 'sportsStoreConfig', '$http',
 				function($scope, config, $http){
 //				$scope.data = {
 //					products: [

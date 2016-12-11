@@ -18,6 +18,7 @@ and open the template in the editor.
 		<script type="text/javascript" src="./filters/customFilters.js"></script>
 		<script type="text/javascript" src="./controllers/productListControllers.js"></script>
 		<script type="text/javascript" src="./components/cart/cart.js"></script>
+		<script type="text/javascrip" src="../bower_components/angular-route/angular-route.js"></script>
 	</head>
 	<body ng-controller="sportsStoreCtrl as ctrl">
 		<div class="navbar navbar-inverse">
@@ -62,6 +63,9 @@ and open the template in the editor.
 			</div>
 		</div>-->
 		<!--	<ng-include src="'views/productList.html'"></ng-include>-->
-		<div ng-include="'views/productList.html'">The product list goes in here.</div>
+		
+		<!--<div ng-include="'views/productList.html'">The product list goes in here.</div>-->
+		<div ng-view></div>
+		<!--<ng-view/>-->
 	</body>
 </html>

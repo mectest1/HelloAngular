@@ -63,7 +63,7 @@
 			<label>Zip</label>
 			<input name="zip" class="form-control"
 				   ng-model="data.shipping.zip" required/>
-			<span class="error" ng-show="shippingForm.izp.$error.required">
+			<span class="error" ng-show="shippingForm.zip.$error.required">
 				Please enter a zip code
 			</span>
 		</div>
@@ -72,8 +72,8 @@
 			<label>Country</label>
 			<input name="country" class="form-control"
 				   ng-model="data.shipping.country" required/>
-			<span class="error" ng-show="shippingForm.izp.$error.required">
-				Please enter a zip country
+			<span class="error" ng-show="shippingForm.country.$error.required">
+				Please enter a country
 			</span>
 		</div>
 		
@@ -87,7 +87,8 @@
 		</div>
 
 		<div class="text-center">
-			<button class="btn btn-primary" ng-disabled="shippingForm.$invalid">Complete Order</button>
+			<button class="btn btn-primary" ng-disabled="shippingForm.$invalid"
+					ng-click="sendOrder(data.shipping)">Complete Order</button>
 		</div>
 	</div>
 </form>

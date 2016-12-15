@@ -4,10 +4,11 @@
 		<title>Administration</title>
 		<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
 		<script type="text/javascript" src="../bower_components/angular-route/angular-route.js"></script>
+		<script type="text/javascript" src="../bower_components/angular-resource/angular-resource.js"></script>
 		<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
 		<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
 		<script type="text/javascript">
-			angular.module('sportsStoreAdmin', ['ngRoute'])
+			angular.module('sportsStoreAdmin', ['ngRoute', 'ngResource'])
 				.config(['$routeProvider', function($routeProvider){
 					$routeProvider.when('/login', {
 						templateUrl: './views/adminLogin.html'
@@ -23,8 +24,9 @@
 			}]);
 		</script>
 		<script type="text/javascript" src="./controllers/adminControllers.js"></script>
+		<script type="text/javascript" src="./controllers/adminProductController.js"></script>
 	</head>
 	<body>
-		<div ng-view></div>
+		<div class="panel panel-default row" ng-view></div>
 	</body>
 </html>

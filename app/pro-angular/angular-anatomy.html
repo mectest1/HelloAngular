@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+	<head>
+		<title>AngularJS Demo</title>
+		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+		<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+		<script type="text/javascript">
+			(function(){
+				var myApp = angular.module('exampleApp', []);
+			
+				myApp.controller('dayCtrl', ['$scope', function($scope){
+					$scope.day = new Date().getDay();
+				}]);
+			
+				myApp.controller('tomorrowCtrl', function($scope){
+					$scope.day = new Date().getDay() + 1;
+				});
+				
+				myApp.directive('highlight', ['$filter', function($filter){	//Directive not working
+					var dayNameFilter = $filter('dayName');
+					
+					var linkFunc = function(scope, element, attrs){
+						var dayName = dayNameFilter(scope.day);
+//						if(attrs['hightlights'] == scope.day){
+						if(attrs['highlight'] == dayName){
+							element.css('color', 'red');
+						}
+					};
+
+					return linkFunc;
+//					return {
+////						restrict: 'AE',
+//						link: linkFunc
+//					}
+				}]);
+				
+				myApp.filter('dayName', function(){
+					var dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 
+							'Thursday', 'Friday', 'Saturday'];
+					var DAY_OF_WEEK = 7;
+					return function(input){
+						return angular.isNumber(input)? dayNames[input % DAY_OF_WEEK] : input;
+					};
+				});
+			
+			})();
+		</script>
+			
+	</head>
+	<body>
+		<div class="panel">
+			<div class="page-header">
+				<h3>AngularJS App</h3>
+			</div>
+			
+			<h4 ng-controller="dayCtrl" highlight="Sunday">
+				<!--Today is {{day || "(unknown)" | dayName}}-->
+				Today is {{day | dayName}}
+			</h4>
+			<h4 ng-controller="tomorrowCtrl">
+				<!--Tomorrow is {{day || "(unknown)" | dayName}}-->
+				Tomorrow is {{day | dayName}}
+			</h4>
+		</div>
+	</body>
+</html>

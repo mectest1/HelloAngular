@@ -9,13 +9,15 @@
 			(function(){
 				var myApp = angular.module('exampleApp', []);
 			
-				myApp.controller('dayCtrl', ['$scope', function($scope){
-					$scope.day = new Date().getDay();
+				myApp.controller('dayCtrl', ['$scope', 'days', function($scope, days){
+//					$scope.day = new Date().getDay();
+					$scope.day = days.today;
 				}]);
 			
-				myApp.controller('tomorrowCtrl', function($scope){
-					$scope.day = new Date().getDay() + 1;
-				});
+				myApp.controller('tomorrowCtrl', ['$scope', 'days', function($scope, days){
+//					$scope.day = new Date().getDay() + 1;
+					$scope.day = days.tomorrow;
+				}]);
 				
 				myApp.directive('highlight', ['$filter', function($filter){	//Directive not working
 					var dayNameFilter = $filter('dayName');
@@ -44,6 +46,10 @@
 					};
 				});
 			
+				myApp.service('days', function(){
+					this.today = new Date().getDay();
+					this.tomorrow = new Date().getDay() + 1;
+				})
 			})();
 		</script>
 			

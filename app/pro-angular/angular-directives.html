@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="directiveApp">
+	<head>
+		<title>AngularJS Directives</title>
+		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+		<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+		<script type="text/javascript">
+			(function(){
+				angular.module('directiveApp', [])
+						.controller('defaultCtrl', ['$scope', function($scope){
+							$scope.todos = [
+								{action: 'Get groceries', complete: false},
+								{action: 'Call plumber', complete: false},
+								{action: 'Buy running shoes', complete: true},
+								{action: 'Buy flowers', complete: false},
+								{action: 'Call family', complete: false}
+							];	
+				}]);
+			})();
+		</script>
+			
+	</head>
+	<body>
+		<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+			<h3 class="panel-header">To Do List</h3>
+			
+			<div>There are {{todos.length}} items.</dvi>
+			
+			<div>
+				There are <span ng-bind="todos.length"></span> items.
+			</div>
+			
+			<div ng-bind-template="First: {{todos[0].action}}, Second: {{todos[1].action}}">
+			</div>
+
+			<div ng-non-bindable>
+				AngularJS uses {{ and }} characters for templates.
+			</div>
+		</div>
+	</body>
+</html>

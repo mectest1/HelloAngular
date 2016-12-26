@@ -46,10 +46,13 @@
 					};
 				});
 			
-				myApp.service('days', function(){
-					this.today = new Date().getDay();
+				//
+				myApp.value('nowValue', new Date());
+				myApp.service('days', ['nowValue', function(nowValue){
+//					this.today = new Date().getDay();
+					this.today = nowValue.getDay();
 					this.tomorrow = new Date().getDay() + 1;
-				})
+				}]);
 			})();
 		</script>
 			

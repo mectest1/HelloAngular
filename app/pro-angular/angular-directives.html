@@ -16,10 +16,26 @@
 								{action: 'Buy flowers', complete: false},
 								{action: 'Call family', complete: false}
 							];	
+				}]).filter('completed', [function(){
+					return function(data){
+						var retval = "Unfinished";
+						if(data){
+							retval = "Done";
+						}
+						return retval;
+					};
 				}]);
 			})();
 		</script>
-			
+		
+		<style type="text/css">
+			.odd {
+				background-color: lightcoral;
+			}
+			.even {
+				background-color: lavenderblush;
+			}
+		</style>
 	</head>
 	<body>
 		<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
@@ -50,14 +66,16 @@
 			<table class="table">
 				<thead>
 					<tr>
+						<th>#</th>
 						<th>Action</th>
 						<th>Done</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="item in todos">
+					<tr ng-repeat="item in todos" ng-class="$odd ? 'odd' : 'even'">
+						<td>{{$index + 1}}</td>
 						<td>{{item.action}}</td>
-						<td>{{item.complete}}</td>
+						<td><span ng-if="$first || $last">{{item.complete}}</span></td>
 					</tr>
 				</tbody>
 			</table>
@@ -78,6 +96,28 @@
 					</tr>
 				</thead>
 			</table>
+			
+			<div class="well">
+				<h4>Use ngRepeatStart and ngRepeatEnd</h4>
+			</div>
+			<table class="table">
+				<tr ng-repeat-start="item in todos">
+					<td>This is item {{$index}}</td>
+				</tr>
+				<tr>
+					<td>The action is {{item.action}}</td>
+				</tr>
+				<tr ng-repeat-end>
+					<td>Item {{$index}} is {{$item.complete ? '' : 'not'}} complete</td>
+				</tr>
+			</table>
+			
+			<div class="well">
+				<h4>Use ngInclude to import partial view</h4>
+			</div>
+			<!--<ng-include src="'./views/partial-table.html'" />-->
+			<!--<div ng-include="'./views/partial-table.html'"></div>-->
+			<div ng-include="'./views/partial-list.html'"></div>
 		</div>
 	</body>
 </html>

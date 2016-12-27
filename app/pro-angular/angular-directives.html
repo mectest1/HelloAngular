@@ -8,14 +8,25 @@
 		<script type="text/javascript">
 			(function(){
 				angular.module('directiveApp', [])
-						.controller('defaultCtrl', ['$scope', function($scope){
-							$scope.todos = [
-								{action: 'Get groceries', complete: false},
-								{action: 'Call plumber', complete: false},
-								{action: 'Buy running shoes', complete: true},
-								{action: 'Buy flowers', complete: false},
-								{action: 'Call family', complete: false}
-							];	
+				.controller('defaultCtrl', ['$scope', function($scope){
+						
+					$scope.data = {};
+			
+					$scope.todos = [
+						{action: 'Get groceries', complete: false},
+						{action: 'Call plumber', complete: false},
+						{action: 'Buy running shoes', complete: true},
+						{action: 'Buy flowers', complete: false},
+						{action: 'Call family', complete: false}
+					];
+
+					$scope.viewFile = function(){
+						return $scope.showList ? './views/partial-list.html' : './views/partial-table.html';
+					};
+
+					$scope.reportChange = function(){
+						console.log("angular-directives.html::reportChange() - Displayed content: " + $scope.viewFile());
+					};
 				}]).filter('completed', [function(){
 					return function(data){
 						var retval = "Unfinished";
@@ -39,6 +50,54 @@
 	</head>
 	<body>
 		<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+			
+			<div class="well">
+				<h4>Use ngSwitch to switch between different tabs</h4>
+				<div class="radio" ng-repeat="button in ['None', 'Table', 'List']">
+					<label>
+						<input type="radio" ng-model="data.mode"
+							   value="{{button}}" ng-checked="$first"/>
+						{{button}}
+					</label>
+				</div>
+			</div>
+			<div ng-switch on="data.mode">
+				<div ng-switch-when="Table">
+					<!--The ng-include directive will not work as in ng-switch-->
+					<!--<div ng-include="./views/partial-table.html"></div>-->
+					<table class="table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Action</th>
+								<th>Done</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in todos" ng-class="$odd ? 'odd' : 'even'">
+								<td>{{$index + 1}}</td>
+								<td ng-repeat="prop in item">{{prop}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div ng-switch-when="List">
+					<!--The ng-include directive will not work as in ng-switch-->
+					<!--<div ng-include="./views/partial-list.html"></div>-->
+					<ol>
+						<li ng-repeat="item in todos">
+							{{item.action}}
+							<!--<span ng-if="item.complete"> (Done)</span>-->
+							<span ng-class="item.complete? 'label-info' : 'label-warning'">{{item.complete | completed}}</span>
+						</li>
+					</ol>
+				</div>
+				<div ng-switch-default>
+					Select another option to display a layout.
+				</div>
+			</div>
+			
+			<hr/>
 			<h3 class="panel-header">To Do List</h3>
 			
 			<div>There are {{todos.length}} items.</div>
@@ -118,6 +177,18 @@
 			<!--<ng-include src="'./views/partial-table.html'" />-->
 			<!--<div ng-include="'./views/partial-table.html'"></div>-->
 			<div ng-include="'./views/partial-list.html'"></div>
+			
+			<div class="well">
+				<h4>Switch between different included parts</h4>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" ng-model="showList"/>
+						Use the List View
+					</label>
+				</div>
+			</div>
+			<div ng-include="viewFile()" onload="reportChange()"></div>
+			
 		</div>
 	</body>
 </html>

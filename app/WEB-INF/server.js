@@ -13,7 +13,7 @@
 let express = require('express');
 let path = require('path');
 let app = express();
-const PORT = 5000;
+const PORT = 8000;
 
 //app.use(express.static('../pro-angular'));
 let proAngularPath = path.join(__dirname, '../');

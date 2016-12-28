@@ -61,9 +61,10 @@
 					</label>
 				</div>
 			</div>
-			<div ng-switch on="data.mode">
+			<div ng-switch on="data.mode" ng-cloak>
 				<div ng-switch-when="Table">
 					<!--The ng-include directive will not work as in ng-switch-->
+					<!--ref: http://stackoverflow.com/questions/15974086/conditional-ng-include-in-angularjs -->
 					<!--<div ng-include="./views/partial-table.html"></div>-->
 					<table class="table">
 						<thead>
@@ -130,7 +131,7 @@
 						<th>Done</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody ng-cloak>
 					<tr ng-repeat="item in todos" ng-class="$odd ? 'odd' : 'even'">
 						<td>{{$index + 1}}</td>
 						<td>{{item.action}}</td>

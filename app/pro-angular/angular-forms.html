@@ -18,11 +18,26 @@
 					];
 					
 					$scope.addNewItem = function(newItem){
+						if(!(newItem && newItem.action && newItem.location)){
+							return;
+						}
 						$scope.todos.push({
 							action: newItem.action + "(" + newItem.location + ")",
 							complete: false
 						});	
 					};
+					
+					
+					//$scope.locationOpts = ['Home', 'Office', 'Mall'];
+					Object.defineProperty($scope, 'locationOpts', {
+						configurable: false,
+						enumerable: true,
+						value: ['Home', 'Office', 'Mall'],
+						writable: false
+//						get: function(){
+//							return ['Home', 'Office', 'Mall'];
+//						}
+					});
 
 			}]);
 		})();
@@ -46,7 +61,7 @@
 				</span>
 			</h3>
 			<div class="row">
-				<div class="col-xs-6">
+				<div class="col-xs-4">
 					<div class="well">
 						<div class="form-group row">
 							<label for="actionText">Action: </label>
@@ -57,7 +72,7 @@
 							<label for="actionLocation">Location</label>
 							<select id="actionLocation" class="form-control"
 									ng-model="newTodo.location">
-								<option ng-repeat="option in ['Home', 'Office', 'Mall']">{{option}}</option>
+								<option ng-repeat="option in locationOpts">{{option}}</option>
 							</select>
 						</div>
 						<button class="btn btn-primary btn-block" ng-click="addNewItem(newTodo)">
@@ -65,27 +80,27 @@
 						</button>
 					</div>
 				</div>
-			</div>
-			<div class="well">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Action</th>
-							<th>Done</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="todo in todos" ng-class="settings.Rows">
-							<td>{{$index + 1}}</td>
-							<td>{{todo.action}}</td>
-							<td>
-								<input type="checkbox" ng-model="todo.complete"/>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="col-xs-8">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Action</th>
+								<th>Done</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="todo in todos" ng-class="settings.Rows">
+								<td>{{$index + 1}}</td>
+								<td>{{todo.action}}</td>
+								<td>
+									<input type="checkbox" ng-model="todo.complete"/>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 
+				</div>
 			</div>
 		</div>
 	</body>

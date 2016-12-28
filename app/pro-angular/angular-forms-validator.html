@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="directiveApp2">
+	<head>
+		<title>Directives</title>
+		<script src="../bower_components/angular/angular.js"></script>
+		<link type="text/css" rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+		<link type="text/css" rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+		<script type="text/javascript">
+		(function(){
+			angular.module('directiveApp2', [])
+				.controller('defaultCtrl', ['$scope', function($scope){
+					
+			}]);
+		})();
+		</script>
+		<style type="text/css">
+			.Red {background-color: lightcoral;}
+			.Green {background-color: lightgreen;}
+			.Blue {background-color: lightblue;}
+			
+			td > *:first-child{
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+	<head>
+		<title>Directives</title>
+		<script src="../bower_components/angular/angular.js"></script>
+		<link type="text/css" rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+		<link type="text/css" rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+		<script type="text/javascript">
+		(function(){
+			angular.module('exampleApp', [])
+				.controller('defaultCtrl', ['$scope', function($scope){
+					$scope.requiredValue = true;
+					$scope.matchPattern = new RegExp('^[a-z]');
+			}]);
+		})();
+		</script>
+	</head>
+	<body id="todoPanel" class="panel" ng-controller="defaultCtrl">
+		<form name="myForm" novalidate>
+			<div class="well">
+				<div class="form-group">
+					<label>Text: </label>
+					<input name="sample" class="form-control" ng-model="inputValue"
+						   ng-required="requireValue" ng-minlength="3"
+						   ng-maxlength="10" ng-pattern="matchPattern"/>
+				</div>
+				<div>
+<!--					<dl ng-repeat="(err, objList) in myForm.$error">
+						<dt>{{err}}</dt>
+						<dd>
+							<ol>
+								<li ng-repeat="obj in objList">{{obj.$name}}: {{obj.$error}}</li>
+							</ol>
+						</dd>
+					</dl>-->
+					<dl>
+						<dt ng-repeat-start="(err, objList) in myForm.$error">{{err}}</dt>
+						<dd ng-repeat-end>
+							<ol>
+								<li ng-repeat="obj in objList">{{obj.$name}}: {{obj.$error}}</li>
+							</ol>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</form>
+	</body>
+</html>

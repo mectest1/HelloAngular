@@ -77,12 +77,17 @@
 					</button>
 				</div>
 				<div class="well">
-					Message: {{message}}
+					<span class="label label-info">Message:</span>
+					<span>
+						{{message}}
+					</span> <br/>
+					<span class="label label-info">Valid: </span>
+					<span class="summary" ng-class="myForm.$valid ? 'ng-valid' : 'ng-invalid'">
+						{{myForm.$valid}}
+					</span>
+					<hr/>
+					<span class="label-primary label">Unfulfilled form validators:</span>
 					<div>
-						Valid: 
-						<span class="summary" ng-class="myForm.$valid ? 'ng-valid' : 'ng-invalid'">
-							{{myForm.$valid}}
-						</span>
 						<div>
 							<dl ng-repeat="(err, objList) in myForm.$error">
 								<dt>{{err}}</dt>

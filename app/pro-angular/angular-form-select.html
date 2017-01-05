@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="exampleApp">
+	<head>
+		<title>Select</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="../bower_components/angular/angular.js" type="text/javascript"></script>
+		<link href="../bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet"/>
+		<link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+		<script type="text/javascript">
+			(function(){
+				angular.module('exampleApp', [])
+						.controller('defaultCtrl', ['$scope', function($scope){
+					$scope.todos = [
+						{id: 100, place: 'Store', action: 'Get groceries', complete: false},
+						{id: 200, place: 'Home', action: 'Call plumber', complete: false},
+						{id: 300, place: 'Store', action: 'Buy running shoes', complete: true},
+					];		
+					
+					//$scope.selectValue = $scope.todos[0];
+				}]);
+			})();
+		</script>
+	</head>
+	<body>
+		<div id="todoPanel" class="panel" ng-controller="defaultCtrl">
+			<form name="myForm" novalidate>
+				<div class="well">
+					<h4 class="label label-info">Use ng-options</h4>
+					<div class="form-group">
+						<label>Select an Action:</label>
+						<select ng-model="selectValue"
+							ng-options="item.action for item in todos">
+							<option value="">(Pick One)</option>
+						</select>
+					</div>
+					<div class="well">
+						<p>Selected: {{selectValue || '{No selection has been made yet}'}}</p>
+					</div>
+				</div>
+				<div class="well">
+					<h4 class="label label-info">Set object property as select value</h4>
+					<div class="form-group">
+						<label>Select an Action:</label>
+						<select ng-model="selectValue2"
+							ng-options="item.id as item.action for item in todos">
+							<option value="">(Pick One)</option>
+						</select>
+					</div>
+					<div class="well">
+						<p>Selected: {{selectValue2 || '{No selection has been made yet}'}}</p>
+					</div>
+				</div>
+				<div class="well">
+					<h4 class="label label-info">Grouped options</h4>
+					<div class="form-group">
+						<label>Select an Action:</label>
+						<select ng-model="selectValue3"
+							ng-options="item.id as item.action group by item.place for item in todos">
+							<option value="">(Pick One)</option>
+						</select>
+					</div>
+					<div class="well">
+						<p>Selected: {{selectValue3 || '{No selection has been made yet}'}}</p>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

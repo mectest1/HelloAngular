@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="exampleApp">
+	<head>
+		<title>Controller - Reusing Controllers</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="../bower_components/angular/angular.js" type="text/javascript"></script>
+		<link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<link href="../bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript">
+			(function(){
+				angular.module('exampleApp', [])
+						.controller('simpleCtrl', ['$scope', 'ZipCodes', function($scope, ZipCodes){
+								
+					$scope.$on(ZipCodes.eventName, function(event, args){
+						$scope[args.type] = args.zipCode;
+					});
+					
+					$scope.setAddress = function(type, zip){
+						ZipCodes.setZipCode(type, zip);
+						console.log('Type: ' + type + ', ' + zip);
+					};
+					
+					$scope.copyAddress = function(){
+						$scope.zip = $scope.billingZip;
+					};
+				}]).factory('ZipCodes', ['$rootScope', function($rootScope){
+					var EVENT_ZIP_CODE_UPDATED = 'zipCodeUpdated';
+					var retval =  {
+						setZipCode: function(type, zip){
+							$rootScope.$broadcast(EVENT_ZIP_CODE_UPDATED, {
+								type: type, zipCode: zip
+							});
+						}
+					};
+					
+					Object.defineProperty(retval, 'eventName', {
+						configurable: false,
+						enumerable: true,
+						value: EVENT_ZIP_CODE_UPDATED,
+						writable: false
+					});
+					
+					return retval;
+				}]);
+			})();
+		</script>
+	</head>
+	<body>
+		<div class="well" ng-controller="simpleCtrl">
+				<h4>Billing Zip Code</h4>
+				<div class="form-group">
+					<input class="form-control" ng-model="zip"/>
+				</div>
+				<button class="btn btn-primary" ng-click="setAddress('billingZip', zip)">
+					Save Billing
+				</button>
+		</div>
+		<div class="well" ng-controller="simpleCtrl">
+				<h4>Shipping Zip Code</h4>
+				<div class="form-group">
+					<input class="form-control" ng-model="zip"/>
+				</div>
+				<button class="btn btn-primary" ng-click="copyAddress()">
+					Use Billing
+				</button>
+				<button class="btn btn-primary" ng-click="setAddress('shippingZip', zip)">
+					Save Shipping
+				</button>
+		</div>
+	</body>
+</html>

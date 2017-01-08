@@ -5,19 +5,37 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="../bower_components/angular/angular.js" type="text/javascript"></script>
-		<script src="../bower_components/jquery/" type="text/javascript"></script>
+		<script src="../bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
 		<script src="../bower_components/jquery-ui/jquery-ui.js" type="text/javascript"></script>
 		<link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 		<link href="../bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
 		<link rel="stylesheet" type="text/css" href="../bower_components/jquery-ui/themes/base/jquery-ui.css"/> 
 		<script type="text/javascript">
 			(function(){
+				
 				$(document).ready(function(){
-					
+					var angularRegion = document.getElementById('angularRegion');
+					$('#jqui button').button().click(function(e){
+						//alert('jQuery UI Button was clicked');
+						angular.element(angularRegion).scope().$apply('handleClick()');
+					});
 				});
 				var app = angular.module('exampleApp', [])
 						.controller('simpleCtrl', ['$scope', function($scope){
+					$scope.buttonEnabled = true;
+					$scope.clickCounter = 0;
 					
+					$scope.handleClick = function(){
+						++ $scope.clickCounter;
+					};
+					
+					$scope.$watch('buttonEnabled', function(newVal, oldVal){
+						$('#jqui button').button(
+							{
+								disabled: !newVal
+							}
+						);
+					});
 				}]);
 			})();
 		</script>
@@ -30,6 +48,9 @@
 					<input type="checkbox" ng-model="buttonEnabled"/>
 					Enable Button
 				</label>
+				<span class="label label-info">
+					Click Counter: {{clickCounter}}
+				</span>
 			</div>
 		</div>
 		<div id="jqui" class="well">

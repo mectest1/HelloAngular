@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="exampleApp">
+	<head>
+		<title>Directives</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+		<!--<script type="text/javascript" src="../bower_components/angular-locale_fr-fr/angular-locale_fr-fr.js"></script>-->
+		<script type="text/javascript">
+			(function(){
+				angular.module('exampleApp', [])
+						.controller('defaultCtrl', ['$scope', function($scope){
+							$scope.products = [
+								{name: 'Apples', category: 'Fruit', price: 1.20, expiry: 10},
+								{name: 'Bananas', category: 'Fruit', price: 2.42, expiry: 7},
+								{name: 'Pears', category: 'Fruit', price: 2.02, expiry: 6},
+							];
+				}]);
+			})();
+		</script>
+	</head>
+	<body ng-controller="defaultCtrl">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3>Products</h3>
+			</div>
+			<div class="panel-body">
+				Content will go here
+			</div>
+		</div>
+	</body>
+</html>

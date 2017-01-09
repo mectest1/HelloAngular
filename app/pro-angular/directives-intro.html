@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html ng-app="exampleApp">
+<html>
 	<head>
 		<title>Directives</title>
 		<meta charset="UTF-8">
@@ -13,16 +13,18 @@ and open the template in the editor.
 		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
 		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
 		<!--<script type="text/javascript" src="../bower_components/angular-locale_fr-fr/angular-locale_fr-fr.js"></script>-->
+		<script type="text/javascript" src="../bower_components/requirejs/require.js"></script>
 		<script type="text/javascript">
 			(function(){
-				angular.module('exampleApp', [])
-						.controller('defaultCtrl', ['$scope', function($scope){
-							$scope.products = [
-								{name: 'Apples', category: 'Fruit', price: 1.20, expiry: 10},
-								{name: 'Bananas', category: 'Fruit', price: 2.42, expiry: 7},
-								{name: 'Pears', category: 'Fruit', price: 2.02, expiry: 6},
-							];
-				}]);
+				define('angular', function(){
+					return window.angular;
+				});
+//				require.config({
+//					
+//				});
+				require(['./modules/directives-intro-app'], function(app){
+					angular.bootstrap(document, [app.name]);
+				});
 			})();
 		</script>
 	</head>
@@ -32,7 +34,7 @@ and open the template in the editor.
 				<h3>Products</h3>
 			</div>
 			<div class="panel-body">
-				Content will go here
+				<div data-unordered-list="products"></div>
 			</div>
 		</div>
 	</body>

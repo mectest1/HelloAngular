@@ -15,6 +15,7 @@
     "angular-ui-router": "ui-router#^0.3.2",
     "angular-resource": "^1.5.9",
     "jquery-ui": "^1.12.1",
-    "angular-locale_fr-fr": "*"
+    "angular-locale_fr-fr": "*",
+    "requirejs": "^2.3.2"
   }
 }

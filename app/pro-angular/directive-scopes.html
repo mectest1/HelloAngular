@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Directive Scopes</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="../bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+		<link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" src="../bower_components/requirejs/require.js"></script>
+		<script type="text/javascript">
+			require.config({
+				paths: {
+					'angular': '../bower_components/angular/angular',
+					'text': '../bower_components/text/text'
+				},
+				shim: {
+					'angular': {
+						exports: 'angular'
+					}
+				}
+			});
+			require(['angular', './modules/directive-scopes-app'], function(angular, app){
+//				angular.bootstrap(document, app.name);	//Uncaught Type Error: modules.unshift is not a function
+				angular.bootstrap(document, [app.name]);
+			});
+		</script>
+	</head>
+	<body>
+		<div class="panel panel-default" ng-controller="scopeCtrl">
+			<div class="panel-body" data-scope-demo></div>
+			<div class="panel-body" data-scope-demo></div>
+			<div class="panel-body well">
+				<h4>One-way binding</h4>
+				<p>Set value of data.name: <input ng-model="data.name"/></p>
+
+				<p>A simple instance of the directive:</p>
+				<div class="panel-body" data-isolated-scope-demo 
+					 data-name-prop="{{data.name}}"></div>
+				<p>Another instance of the same directive: </p>
+				<div class="panel-body" data-isolated-scope-demo 
+					 data-name-prop="{{data.name}} Freeman"></div>
+			</div>
+		</div>
+	</body>
+</html>

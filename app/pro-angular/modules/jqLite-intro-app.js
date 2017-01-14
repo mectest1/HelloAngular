@@ -1,6 +1,7 @@
 define(['angular'], function(angular){
 	const ORANGE_ITEM = 'Oranges';
 	const TAG_LI_NAME = 'li';
+	const TAG_OL_NAME = 'ol';
 	const TEXT_COLOR = 'green';
 	return angular.module('exampleApp', [])
 			.directive('demoDirective', function(){
@@ -26,7 +27,23 @@ define(['angular'], function(angular){
 				}
 			}
 		};
+	}).directive('demoDirective3', function(){
+		return (scope, element, attrs) => {
+			let listElem = angular.element('<ol>');
+			element.append(listElem);
+			scope.names.forEach(name => {
+				listElem.append(angular.element('<li>')
+						.append(angular.element('<span>')
+						.text(name)));
+			});
+			
+			let buttons = element.find('button');
+			buttons.on('click', e => {
+				element.find('li').toggleClass('bold');
+			});
+		};
 	}).controller('defaultCtrl', ['$scope', ($scope) => {
 			//controller defines no data or behaviors;
+			$scope.names = ['Apples', 'Bananas', 'Oranges'];
 	}]);
 });

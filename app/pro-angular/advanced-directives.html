@@ -14,11 +14,12 @@ and open the template in the editor.
 		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
 		<!--<script type="text/javascript" src="../bower_components/angular-locale_fr-fr/angular-locale_fr-fr.js"></script>-->
 		<script type="text/javascript" src="../bower_components/requirejs/require.js"></script>
-		<style type="text/css">
-			.bold{
-				font-weight: bold;
-			}
-		</style>
+		<script type="text/template" id="listTemplate">
+			<!-- content listed here will be retrieved by the directive template function-->
+			<ul>
+				<li ng-repeat="item in data">{{item.price | currency}}</li>
+			</ul>
+		</script>
 		<script type="text/javascript">
 			(function(){
 //				define('angular', function(){
@@ -26,7 +27,8 @@ and open the template in the editor.
 //				});
 				require.config({
 					paths: {
-						'angular': '../bower_components/angular/angular'	//Alias for ../bower_components/angular/angular
+						'angular': '../bower_components/angular/angular',	//Alias for ../bower_components/angular/angular
+						'text': '../bower_components/text/text'
 					},
 					shim: {
 						'angular': {
@@ -38,37 +40,36 @@ and open the template in the editor.
 						}
 					}
 				});
-				require(['modules/jqLite-intro-app', 'angular'], (app, angular) => {
+//				require(['./modules/directives-intro-app', 'angular'], function(app, angular){	//both will work
+				require(['modules/advanced-directives-app', 'angular'], function(app, angular){
 					angular.bootstrap(document, [app.name]);
 				});
 			})();
 		</script>
 	</head>
 	<body ng-controller="defaultCtrl">
-		<h3>Fruit</h3>
-		<ol data-demo-directive>
-			<li>Apples</li>
-			<li>Oranges</li>
-			<li>Pears</li>
-		</ol>
-		<hr/>
-		<div></div>
-		<ol data-demo-directive2>
-			<li>Apples</li>
-			<li>Oranges</li>
-			<li>
-				<ul>
-					<li>Bananas</li>
-					<li>Cherries</li>
-					<li>Oranges</li>
-				</ul>
-			</li>
-			<li>Pears</li>
-			
-		</ol>
-		<hr/>
-		<div data-demo-directive3>
-			<button class="btn btn-primary">CLick Me</button>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3>Products</h3>
+			</div>
+			<div class="panel-body">
+				<unordered-list list-source="products" list-property="price | currency">
+				</unordered-list>
+			</div>
+			<div class="panel-body">
+				<div data-unordered-list="products" data-list-property="price | currency"></div>
+			</div>
+			<div class="panel-body">
+				<!--directive: unordered-list products-->
+			</div>
+			<div data-unordered-list-with-template="products">
+				This is where the list will go
+			</div>
+			<h3>Template Function:</h3>
+			<div data-unordered-list-with-template-func="products">
+			</div>
+			<div data-unordered-list-with-template-url="products">
+			</div>
 		</div>
 	</body>
 </html>

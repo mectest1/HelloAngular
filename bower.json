@@ -16,6 +16,7 @@
     "angular-resource": "^1.5.9",
     "jquery-ui": "^1.12.1",
     "angular-locale_fr-fr": "*",
-    "requirejs": "^2.3.2"
+    "requirejs": "^2.3.2",
+    "text": "requirejs/text#^2.0.15"
   }
 }

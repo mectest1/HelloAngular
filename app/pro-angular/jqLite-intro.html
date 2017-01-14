@@ -33,33 +33,32 @@ and open the template in the editor.
 						}
 					}
 				});
-//				require(['./modules/directives-intro-app', 'angular'], function(app, angular){	//both will work
-				require(['modules/directives-intro-app', 'angular'], function(app, angular){
+				require(['modules/jqLite-intro-app', 'angular'], (app, angular) => {
 					angular.bootstrap(document, [app.name]);
 				});
 			})();
 		</script>
 	</head>
 	<body ng-controller="defaultCtrl">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3>Products</h3>
-			</div>
-			<div class="panel-body">
-				<button class="btn btn-primary"
-					ng-click="incrementPrices()">
-					Change Prices
-				</button>
-			</div>
-			<div class="panel-body">
-				<div data-unordered-list="products"
-					 data-list-property="name"></div>
-				<hr/>
-				<div data-unordered-list="products"></div>
-				<hr/>
-				<div data-unordered-list-expr="products"
-					 data-list-property="price | currency"></div>
-			</div>
-		</div>
+		<h3>Fruit</h3>
+		<ol data-demo-directive>
+			<li>Apples</li>
+			<li>Oranges</li>
+			<li>Pears</li>
+		</ol>
+		<hr/>
+		<ol data-demo-directive2>
+			<li>Apples</li>
+			<li>Oranges</li>
+			<li>
+				<ul>
+					<li>Bananas</li>
+					<li>Cherries</li>
+					<li>Oranges</li>
+				</ul>
+			</li>
+			<li>Pears</li>
+			
+		</ol>
 	</body>
 </html>

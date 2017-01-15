@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Play with directive transclusion</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="../bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
+		<link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<script type="text/javascript" src="../bower_components/requirejs/require.js"></script>
+		<script type="text/javascript">
+			require.config({
+				paths: {
+					'angular': '../bower_components/angular/angular',
+					'text': '../bower_components/text/text'
+				},
+				shim: {
+					'angular': {
+						exports: 'angular'
+					}
+				}
+			});
+			require(['angular', './modules/transclusion-intro-app'], function(angular, app){
+//				angular.bootstrap(document, app.name);	//Uncaught Type Error: modules.unshift is not a function
+				angular.bootstrap(document, [app.name]);
+			});
+		</script>
+	</head>
+	<body ng-controller="defaultCtrl">
+		<div data-panel>
+			The data value comes from the {{dataSource}}
+		</div>
+	</body>
+</html>

@@ -11,11 +11,16 @@ define(['angular', 'text!../views/directive-scopes-view.html',
 		return {
 			template: isolatedView,
 			scope: {
-				local: '@nameProp'
+				local: '@nameProp',
+				localFn: '&'
 			}
 		};
 	}]).controller('scopeCtrl', ['$scope', function($scope){
 		$scope.data = {name: 'Adam'};
 		$scope.city = 'London';
+		
+		$scope.greetings = (name) => {
+			return 'Hello from Controller Scope: ' + name;
+		}
 	}]);
 });

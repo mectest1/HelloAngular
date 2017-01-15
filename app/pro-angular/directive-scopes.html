@@ -40,6 +40,12 @@
 				<p>Another instance of the same directive: </p>
 				<div class="panel-body" data-isolated-scope-demo 
 					 data-name-prop="{{data.name}} Freeman"></div>
+				<p>Function binding in directive </p>
+				<!--data-local-fn="greetings"	this will not work-->
+				<!--data-local-fn="greetings(local)"	this will not work-->
+				<div class="panel-body" data-isolated-scope-demo 
+					 data-name-prop="{{data.name}} Freeman"
+					 data-local-fn="greetings(localArg)"></div>
 			</div>
 		</div>
 	</body>

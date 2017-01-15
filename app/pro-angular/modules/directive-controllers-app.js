@@ -1,19 +1,37 @@
-define(['angular', 'text!../views/product-item-view.html'], 
-	function(angular, productItemView){
+define(['angular', 'text!../views/product-item-view.html',
+	'text!../views/product-table-view.html'], 
+	function(angular, productItemView, productTableView){
 	'use strict';
 	return angular.module('exampleApp', [])
 	.directive('productItem', [function(){
 			return{
-				template: productItemView
+				template: productItemView,
+				require: '^productTable',
+				link: function(scope, element, attrs, tableCtrl){
+					scope.$watch('item.quantity', () => {
+						tableCtrl.updateTotal();
+					});
+				}
 			};			
-	}]).directive('productTemplate', function(){
+	}]).directive('productTable', function(){
 		return {
 			transclude: true,
-			template: '<tbody ng-transclude></tbody>',
+//			template: '<tbody ng-transclude></tbody>',
+			template: productTableView,
 			scope: {
 				value: '=productTable',
 				data: '=productData'
-			}
+			},
+			controller: ['$scope', function($scope){
+				//$scope.updateTotal = () => { //other controllers will not get this one
+				this.updateTotal = () => {
+					var retval = 0;
+					$scope.data.forEach((item) => {
+						retval += item.quantity;
+					});
+					$scope.totalValue = retval;
+				};
+			}]
 		};
 	}).controller('defaultCtrl', ['$scope', function($scope){
 		$scope.products=[

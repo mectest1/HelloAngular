@@ -33,11 +33,13 @@ and open the template in the editor.
 	<body ng-controller="defaultCtrl">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<table class="table table-striped" data-product-table="totalValue"
+				<table class="table table-striped table-bordered" 
+					data-product-table="totalValue"
 					data-product-data="products">
 					<tr><th>Name</th><th>Quantity</th></tr>	   
 					<tr ng-repeat="item in products" data-product-item></tr>
-					<tr><th>Total:</th><th>{{totalValue}}</th></tr>	   
+					<!-- Note: this totalValue here belongs to the parent scope, aka: defaultCtrl.totalValue --> 
+					<!--<tr><th>Total:</th><th>{{totalValue}}</th></tr>-->
 				</table>
 			</div>
 			

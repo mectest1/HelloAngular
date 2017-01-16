@@ -40,6 +40,8 @@ and open the template in the editor.
 					<tr ng-repeat="item in products" data-product-item></tr>
 					<!-- Note: this totalValue here belongs to the parent scope, aka: defaultCtrl.totalValue --> 
 					<!--<tr><th>Total:</th><th>{{totalValue}}</th></tr>-->
+					<tr data-reset-totals data-product-data="products"
+						data-property-name="quantity"></tr>
 				</table>
 			</div>
 			

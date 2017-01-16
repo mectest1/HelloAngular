@@ -1,6 +1,8 @@
 define(['angular', 'text!../views/product-item-view.html',
-	'text!../views/product-table-view.html'], 
-	function(angular, productItemView, productTableView){
+	'text!../views/product-table-view.html',
+	'text!../views/product-reset-view.html'], 
+	function(angular, productItemView, productTableView,
+			productResetView){
 	'use strict';
 	return angular.module('exampleApp', [])
 	.directive('productItem', [function(){
@@ -27,12 +29,29 @@ define(['angular', 'text!../views/product-item-view.html',
 				this.updateTotal = () => {
 					var retval = 0;
 					$scope.data.forEach((item) => {
-						retval += item.quantity;
+						retval += parseInt(item.quantity);
 					});
 					$scope.totalValue = retval;
 				};
 			}]
 		};
+	}).directive('resetTotals', function(){
+		return {
+			scope: {
+				data: '=productData',
+				propName: '@propertyName'
+			},
+			template: productResetView,
+			require: '^productTable',
+			link: function(scope, element, attrs, productTable){
+				scope.reset = () => {
+					scope.data.forEach(item => {
+						item[scope.propName] = 0;
+					});
+					productTable.updateTotal();
+				};
+			}
+		}
 	}).controller('defaultCtrl', ['$scope', function($scope){
 		$scope.products=[
 			{name: 'Apple', price: 1.20, quantity: 2},

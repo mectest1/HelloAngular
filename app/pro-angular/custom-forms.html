@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Custom form elements</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link type="text/css" rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+		<link type="text/css" rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+		<script type="text/javascript" src="../bower_components/requirejs/require.js"></script>
+		<script type="text/javascript">
+			require.config({
+				paths: {
+					'angular': '../bower_components/angular/angular',
+					'text': '../bower_components/text/text'
+				},
+				shim: {
+					'angular':{
+						exports: 'angular'
+					}
+				}
+			});
+			require(['angular', './modules/custom-forms-app'], function(angular, app){
+				angular.bootstrap(document, [app.name]);
+			});
+		</script>
+	</head>
+	<body ng-controller="defaultCtrl">
+		<div>
+			<div data-tri-button ng-model="dataValue">
+			</div>
+			<div class="well">
+				<label class="label label-info">Value: </label>
+				<select ng-model="dataValue" ng-options="option for option in options">
+					
+				</select>
+			</div>
+		</div>
+	</body>
+</html>

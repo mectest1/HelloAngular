@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Introduction to the DOM API</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script type="text/javascript" src="../bower_components/requirejs/require.js"></script>
+		<script type="text/javascript">
+			require.config({
+				paths: {
+					'angular': '../bower_components/angular/angular',
+					'text': '../bower_components/text/text'
+				},
+				shim: {
+					'angular':{
+						exports: 'angular'
+					}
+				}
+			});
+			require(['angular', './modules/dom-api-intro-app'], function(angular, app){
+				angular.bootstrap(document, [app.name]);
+			});
+		</script>
+	</head>
+	<body ng-controller="defaultCtrl">
+		<div class="well">
+			<button class="btn btn-primary" ng-click="displayAlert('Clicked')">
+				Click Me
+			</button>
+		</div>
+		<div class="panel panel-default">
+			<h4 class="panel-heading">Time</h4>
+			<div class="panel-body">
+				The time is: {{time}}
+			</div>
+		</div>
+	</body>
+</html>

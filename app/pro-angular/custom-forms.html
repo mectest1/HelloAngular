@@ -30,8 +30,8 @@ and open the template in the editor.
 		</script>
 	</head>
 	<body ng-controller="defaultCtrl">
-		<div>
-			<div data-tri-button ng-model="dataValue">
+		<form name="myForm" novalidate>
+			<div data-tri-button ng-model="dataValue" class="well" name="decision">
 			</div>
 			<div class="well">
 				<label class="label label-info">Value: </label>
@@ -39,6 +39,6 @@ and open the template in the editor.
 					
 				</select>
 			</div>
-		</div>
+		</form>
 	</body>
 </html>

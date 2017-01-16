@@ -7,6 +7,12 @@ define(['angular', 'text!../views/tri-directive-view.html'],
 				require: 'ngModel',
 				template: triButtonView,
 				link: function(scope, element, attrs, modelCtrl){
+					element.on('click', function(event){
+						setSelected(event.target.innerText);
+						scope.$apply(function(){
+							modelCtrl.$setViewValue(event.target.innerText);
+						});
+					});
 					let setSelected = function(value){
 						let buttons = element.find('button');
 						buttons.removeClass('btn-primary');
@@ -17,11 +23,28 @@ define(['angular', 'text!../views/tri-directive-view.html'],
 							}
 						});
 					};
-					setSelected(scope.dataValue);
+					//setSelected(scope.dataValue);
+					modelCtrl.$render = function(){
+						validateParser(modelCtrl.$viewValue);
+						setSelected(modelCtrl.$viewValue || scope.options[2]);
+					};
+					
+					modelCtrl.$formatters.push(function(value){
+						return 'Huh?' == value ? 'Not Sure' : value;
+					});
+					
+					function validateParser(value){
+						let valid = ('Yes' == value || 'No' == value);
+						modelCtrl.$setValidity('confidence', valid);
+						//return valid ? value : undefined;
+						return value;
+					};
+					
+					modelCtrl.$parsers.push(validateParser);
 				}
 			};
 	}]).controller('defaultCtrl', ['$scope', function($scope){
-			$scope.options = ['Yes', 'No', 'Not Sure'];
+			$scope.options = ['Yes', 'No', 'Not Sure', 'Huh?'];
 			$scope.dataValue = $scope.options[2];	//'Not Sure;		
 	}]);
 });

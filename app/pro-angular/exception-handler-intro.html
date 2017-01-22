@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Introduction to the DOM API</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script type="text/javascript" src="../bower_components/requirejs/require.js"></script>
+		<script type="text/javascript">
+			require.config({
+				paths: {
+					'angular': '../bower_components/angular/angular',
+					'text': '../bower_components/text/text'
+				},
+				shim: {
+					'angular':{
+						exports: 'angular'
+					}
+				}
+			});
+			require(['angular', './modules/exception-handler-intro-app'], function(angular, app){
+				angular.bootstrap(document, [app.name]);
+			});
+		</script>
+	</head>
+	<body ng-controller="defaultCtrl">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<button class="btn btn-primary" ng-click="throwEx()">
+					Throw Exception
+				</button>
+			</div>
+		</div>
+	</body>
+</html>

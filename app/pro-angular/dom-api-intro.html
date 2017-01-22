@@ -28,15 +28,33 @@ and open the template in the editor.
 		</script>
 	</head>
 	<body ng-controller="defaultCtrl">
-		<div class="well">
+		<div id="top-div" class="well">
 			<button class="btn btn-primary" ng-click="displayAlert('Clicked')">
 				Click Me
 			</button>
+			<button ng-click="scrollTo('bottom-div')">To Bottom</button>
 		</div>
 		<div class="panel panel-default">
 			<h4 class="panel-heading">Time</h4>
 			<div class="panel-body">
 				The time is: {{time}}
+			</div>
+		</div>
+		<div id="bottom-div" class="panel panel-default">
+			<div class="panel-heading">
+				<h4>URL</h4>
+				<button ng-click="scrollTo('top-div')">To Top</button>
+			</div>
+			<div>
+				<p>The URL is: {{url}}</p>
+				<div class="btn-group">
+					<button class="btn btn-primary" ng-click="setUrl('reset')">Reset</button>
+					<button class="btn btn-primary" ng-click="setUrl('path')">Path</button>
+					<button class="btn btn-primary" ng-click="setUrl('hash')">Hash</button>
+					<button class="btn btn-primary" ng-click="setUrl('search')">Search</button>
+					<button class="btn btn-primary" ng-click="setUrl('url')">URL</button>
+				</div>
+				
 			</div>
 		</div>
 	</body>

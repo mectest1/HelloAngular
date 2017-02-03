@@ -14,10 +14,15 @@ let express = require('express');
 let path = require('path');
 let app = express();
 const PORT = 8000;
+const HTTP_NOT_FOUND = 404;
 
 //app.use(express.static('../pro-angular'));
 let proAngularPath = path.join(__dirname, '../');
 console.log(`serving ${proAngularPath} with express.js, listening on port number ${PORT}`);
+
+app.use('/WEB-INF', (req, resp) => {
+	resp.sendStatus(HTTP_NOT_FOUND);
+});
 app.use(express.static(proAngularPath));
 
 app.listen(PORT);

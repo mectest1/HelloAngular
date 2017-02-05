@@ -35,9 +35,16 @@ and open the template in the editor.
 	</head>
 	<body ng-controller="defaultCtrl">
 		<div class="well" data-promise-worker>
-			<button class="btn btn-primary">Heads</button>
-			<button class="btn btn-primary">Tails</button>
-			<button class="btn btn-primary">Abort</button>
+			<div class="btn-group">
+				<button class="btn btn-primary" data-group="0">Heads</button>
+				<button class="btn btn-primary" data-group="0">Tails</button>
+				<button class="btn btn-primary" data-group="0">Abort</button>
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-primary" data-group="1">Yes</button>
+				<button class="btn btn-primary" data-group="1">No</button>
+				<button class="btn btn-primary" data-group="1">Abort</button>
+			</div>
 			<p>
 				Outcome:
 				<span data-promise-observer>

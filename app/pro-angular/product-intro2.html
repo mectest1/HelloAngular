@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Working with Dangerous Data</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+		<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+		<script type="text/javascript" src="../bower_components/requirejs/require.js"></script>
+		<script type="text/javascript">
+			require.config({
+				paths: {
+					'angular': '../bower_components/angular/angular',
+					'text': '../bower_components/text/text',
+					'angular-sanitize': '../bower_components/angular-sanitize/angular-sanitize',
+					'angular-resource': '../bower_components/angular-resource/angular-resource'
+				},
+				shim: {
+					'angular':{
+						exports: 'angular'
+					},
+					'angular-sanitize':{
+						deps: ['angular']
+					},
+					'angular-resource': {
+						deps: ['angular']
+					}
+				}
+			});
+			require(['angular', './modules/product-intro-app2'], function(angular, app){
+				angular.bootstrap(document, [app.name]);
+			});
+		</script>
+	</head>
+	<body ng-controller="defaultCtrl">
+		<div class="panel panel-primary">
+			<h3 class="panel-heading">Products</h3>
+			<div ng-include="'views/tableView.html'" ng-show="displayMode == 'list'">
+			</div>
+			<div ng-include="'views/editorView.html'" ng-show="displayMode == 'edit'">
+			</div>
+		</div>
+	</body>
+</html>

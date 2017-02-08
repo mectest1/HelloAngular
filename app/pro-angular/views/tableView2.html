@@ -9,7 +9,8 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="item in products">
+			<!--<tr ng-repeat="item in products">-->
+			<tr ng-repeat="item in data.products">
 				<td>{{item.name}}</td>
 				<td>{{item.category}}</td>
 				<td class="text-right">{{item.price | currency}}</td>
@@ -19,10 +20,13 @@
 								ng-click="deleteProduct(item)">
 							Delete
 						</button>
-						<button class="btn btn-xs btn-primary"
+<!--						<button class="btn btn-xs btn-primary"
 								ng-click="editProduct(item)">
 							Edit		
-						</button>
+						</button>-->
+						<a href="/edit/{{item.id}}" class="btn btn-xs btn-primary">
+							Edit
+						</a>
 						<span data-increment data-item="item"
 							  data-property-name="price"
 							  data-restful="true" data-method-name="$save">
@@ -33,7 +37,8 @@
 		</tbody>
 	</table>
 	<div>
-		<button class="btn btn-primary" ng-click="listProducts()">Refresh</button>
-		<a href="create" class="btn btn-primary">New</a>
+		<!--<button class="btn btn-primary" ng-click="listProducts()">Refresh</button>-->
+		<button class="btn btn-primary" ng-click="refreshProducts()">Refresh</button>
+		<a href="/create" class="btn btn-primary">New</a>
 	</div>
 </div>

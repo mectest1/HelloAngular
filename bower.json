@@ -18,6 +18,7 @@
     "angular-locale_fr-fr": "*",
     "requirejs": "^2.3.2",
     "text": "requirejs/text#^2.0.15",
-    "angular-sanitize": "^1.6.1"
+    "angular-sanitize": "^1.6.1",
+    "angular-animate": "^1.6.2"
   }
 }

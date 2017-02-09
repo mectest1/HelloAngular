@@ -57,7 +57,12 @@ define(['angular'], function(angular){
 //			}]
 		};
 	}])
-			.controller('defaultCtrl', ['$scope', function($scope){
+//	.config(['$provide', function($provide){
+//		$provide.decorator('hello', ['$delegate', function($delegate){
+//				console.log('say hello to delegate');
+//		}]);
+//	}])
+		.controller('defaultCtrl', ['$scope', function($scope){
 					
 	}])
 });
